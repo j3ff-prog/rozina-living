@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Rozina Signature Living</title>
+  <link rel="icon" type="image/jpeg" href="images/rozinalogo.jpeg" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ═══ LOGIN SCREEN ═══ -->
+<div class="login-screen" id="login-screen">
+  <div class="login-card">
+    <img src="images/rozinalogo.jpeg" alt="Rozina" class="login-logo" />
+    <h2>Admin Login</h2>
+    <p>Rozina Signature Living dashboard</p>
+    <div class="form-group">
+      <label for="l-user">Username</label>
+      <input type="text" id="l-user" placeholder="admin" autocomplete="username" />
+    </div>
+    <div class="form-group">
+      <label for="l-pass">Password</label>
+      <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+    <button class="btn btn-primary btn-block" id="login-btn">Sign In</button>
+    <p class="login-error" id="login-error"></p>
+    <p class="login-hint">Default: admin / rozina2025</p>
+  </div>
+</div>
+
+<!-- ═══ DASHBOARD ═══ -->
+<div class="dashboard" id="dashboard" style="display:none;">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <img src="images/rozinalogo.jpeg" alt="Rozina" class="sidebar-logo" />
+      <div>
+        <span class="sidebar-name">Rozina</span>
+        <span class="sidebar-sub">Admin Panel</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-view="products">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="15" y="15" width="7" height="7"/><rect x="2" y="15" width="7" height="7"/></svg>
+        Products
+      </button>
+      <button class="nav-item" data-view="add">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Add Product
+      </button>
+      <button class="nav-item" data-view="orders">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Orders
+      </button>
+    </nav>
+    <button class="logout-btn" id="logout-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Sign Out
+    </button>
+  </aside>
+
+  <!-- Main -->
+  <main class="admin-main">
+
+    <!-- Stats bar -->
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-card">
+        <span class="stat-label">Total Products</span>
+        <span class="stat-val" id="stat-total">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">In Stock</span>
+        <span class="stat-val" id="stat-stock">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Categories</span>
+        <span class="stat-val" id="stat-cats">5</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Featured</span>
+        <span class="stat-val" id="stat-featured">0</span>
+      </div>
+    </div>
+
+    <!-- ── VIEW: Products ── -->
+    <div class="view" id="view-products">
+      <div class="view-head">
+        <h2>Products</h2>
+        <div class="view-actions">
+          <input type="text" id="admin-search" placeholder="Search products…" class="admin-search" />
+          <select id="admin-cat-filter" class="admin-select">
+            <option value="all">All Categories</option>
+            <option value="beds">Beds</option>
+            <option value="tables">Tables</option>
+            <option value="chairs">Chairs</option>
+            <option value="sofas">Sofas</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </div>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table" id="admin-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price (KSh)</th>
+              <th>Stock</th>
+              <th>Featured</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-tbody"></tbody>
+        </table>
+        <p class="empty-state" id="admin-empty" style="display:none;">No products yet. Add your first product.</p>
+      </div>
+    </div>
+
+    <!-- ── VIEW: Add / Edit Product ── -->
+    <div class="view" id="view-add" style="display:none;">
+      <div class="view-head">
+        <h2 id="form-title">Add Product</h2>
+        <button class="btn btn-ghost" id="cancel-edit" style="display:none;">Cancel Edit</button>
+      </div>
+      <div class="product-form-wrap">
+        <form class="product-form" id="product-form">
+          <input type="hidden" id="edit-id" />
+
+          <div class="form-section">
+            <h3>Basic Information</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="p-name">Product Name <span class="req">*</span></label>
+                <input type="text" id="p-name" placeholder="e.g. Manhattan King Bed Frame" required />
+              </div>
+              <div class="form-group">
+                <label for="p-category">Category <span class="req">*</span></label>
+                <select id="p-category" required>
+                  <option value="">Select category…</option>
+                  <option value="beds">Beds</option>
+                  <option value="tables">Tables</option>
+                  <option value="chairs">Chairs</option>
+                  <option value="sofas">Sofas</option>
+                  <option value="accessories">Accessories</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="p-desc">Description <span class="req">*</span></label>
+              <textarea id="p-desc" rows="3" placeholder="Describe the product…" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Pricing &amp; Inventory</h3>
+            <div class="form-row three-col">
+              <div class="form-group">
+                <label for="p-price">Price (KSh) <span class="req">*</span></label>
+                <input type="number" id="p-price" placeholder="45000" min="0" required />
+              </div>
+              <div class="form-group">
+                <label for="p-old-price">Old Price (KSh)</label>
+                <input type="number" id="p-old-price" placeholder="55000" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="p-stock">Stock Qty <span class="req">*</span></label>
+                <input type="number" id="p-stock" placeholder="10" min="0" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Image</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="p-image-url">Image URL</label>
+                <input type="url" id="p-image-url" placeholder="https://…" />
+              </div>
+              <div class="form-group">
+                <label>Or Upload Image</label>
+                <div class="file-drop" id="file-drop">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <span>Drop image here or <label for="p-image-file" class="file-link">browse</label></span>
+                  <input type="file" id="p-image-file" accept="image/*" style="display:none" />
+                </div>
+              </div>
+            </div>
+            <div class="image-preview-wrap" id="image-preview-wrap" style="display:none;">
+              <img id="image-preview" src="" alt="Preview" />
+              <button type="button" class="remove-img-btn" id="remove-img-btn">&times; Remove</button>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Options</h3>
+            <div class="form-row">
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="p-featured" />
+                  <span>Mark as Featured</span>
+                </label>
+              </div>
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="p-new" checked />
+                  <span>Mark as New</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Add Product</button>
+            <button type="button" class="btn btn-ghost" id="reset-btn">Clear Form</button>
+          </div>
+          <p class="form-error" id="form-error"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- ── VIEW: Orders ── -->
+    <div class="view" id="view-orders" style="display:none;">
+      <div class="view-head">
+        <h2>Orders</h2>
+      </div>
+      <div class="orders-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <h3>No orders yet</h3>
+        <p>When customers place orders, they'll appear here.</p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="del-overlay">
+  <div class="confirm-modal">
+    <h3>Delete Product</h3>
+    <p>Are you sure you want to delete <strong id="del-name"></strong>? This cannot be undone.</p>
+    <div class="confirm-actions">
+      <button class="btn btn-danger" id="del-confirm">Delete</button>
+      <button class="btn btn-ghost" id="del-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="admin-toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

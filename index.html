@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rozina Signature Living</title>
+  <link rel="icon" type="image/jpeg" href="images/rozinalogo.jpeg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <img src="images/rozinalogo.jpeg" alt="Rozina Signature Living" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-name">Rozina</span>
+        <span class="logo-sub">Signature Living</span>
+      </div>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#shop">Shop</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-wrap">
+        <input type="text" id="search-input" placeholder="Search furniture…" autocomplete="off" />
+        <button class="search-btn" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <div class="search-results" id="search-results"></div>
+      </div>
+      <button class="cart-btn" id="cart-btn" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nairobi's Premium Furniture Store</p>
+    <h1 class="hero-headline">Designed for Living.<br/>Made to Last.</h1>
+    <p class="hero-body">Curated furniture and home accessories crafted for spaces that mean something.</p>
+    <a href="#shop" class="btn btn-primary">Browse Collection</a>
+  </div>
+</section>
+
+<!-- ═══ CATEGORY STRIP ═══ -->
+<section class="category-strip" id="categories">
+  <div class="container">
+    <div class="category-list" id="category-filter">
+      <button class="cat-pill active" data-cat="all">All</button>
+      <button class="cat-pill" data-cat="beds">Beds</button>
+      <button class="cat-pill" data-cat="tables">Tables</button>
+      <button class="cat-pill" data-cat="chairs">Chairs</button>
+      <button class="cat-pill" data-cat="sofas">Sofas</button>
+      <button class="cat-pill" data-cat="accessories">Accessories</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCT GRID ═══ -->
+<section class="shop-section" id="shop">
+  <div class="container">
+    <div class="section-head">
+      <h2>Our Collection</h2>
+      <div class="sort-wrap">
+        <label for="sort-select">Sort by</label>
+        <select id="sort-select">
+          <option value="newest">Newest</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+    <div class="product-grid" id="product-grid">
+      <!-- Populated by JS -->
+    </div>
+    <p class="empty-state" id="empty-state" style="display:none;">No products found.</p>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about-section" id="about">
+  <div class="container about-grid">
+    <div class="about-text">
+      <p class="section-label">Who We Are</p>
+      <h2>Signature style,<br/>honest craftsmanship</h2>
+      <p>Rozina Signature Living brings thoughtfully sourced furniture and décor to Nairobi homes. Every piece we carry is chosen for build quality, longevity, and how well it lives in a real home — not just a showroom.</p>
+      <p>We work with trusted manufacturers and local craftspeople to give you furniture worth passing on.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat">
+        <span class="stat-num">500+</span>
+        <span class="stat-label">Products</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3 yrs</span>
+        <span class="stat-label">In Business</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1,200+</span>
+        <span class="stat-label">Happy Customers</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">NBI</span>
+        <span class="stat-label">Based in Nairobi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-section" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <p class="section-label">Get in Touch</p>
+      <h2>Visit us or order online</h2>
+      <p>We deliver across Nairobi and surrounding areas. For large orders or custom inquiries, call or WhatsApp us directly.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.27a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          <span>+254 700 000 000</span>
+        </div>
+        <div class="contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>hello@rozinaliving.co.ke</span>
+        </div>
+        <div class="contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Nairobi, Kenya</span>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" id="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="cf-phone">Phone</label>
+          <input type="tel" id="cf-phone" placeholder="+254 …" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" rows="4" placeholder="Tell us what you're looking for…" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+      <p class="form-success" id="form-success" style="display:none;">Message sent — we'll be in touch shortly.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="images/rozinalogo.jpeg" alt="Rozina Signature Living" class="footer-logo" />
+      <p>Designed for Living. Made to Last.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Shop</h4>
+      <a href="#">Beds</a>
+      <a href="#">Tables</a>
+      <a href="#">Chairs</a>
+      <a href="#">Accessories</a>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Rozina Signature Living. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ═══ CART DRAWER ═══ -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" id="cart-close" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <p class="cart-empty">Your cart is empty.</p>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cart-total-price">KSh 0</span>
+    </div>
+    <button class="btn btn-primary btn-block" id="checkout-btn">Proceed to Checkout</button>
+  </div>
+</aside>
+
+<!-- ═══ PRODUCT MODAL ═══ -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="product-modal" id="product-modal">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="modal-inner" id="modal-inner"></div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ═══ -->
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
