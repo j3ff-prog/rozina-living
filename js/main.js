@@ -344,7 +344,7 @@
     cartClose.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
     checkoutBtn.addEventListener('click', () => {
-      showToast('Checkout coming soon — call us on +254 700 000 000');
+      showToast('Checkout coming soon — call us on +254 108 907 912');
     });
 
     /* Modal */
